@@ -1,0 +1,208 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Navbar Styling */
+
+#navbar {
+    /*
+    - Change background color to #f9a857
+    - Turn the navbar into a flex container w/ space between items
+    - Align the items vertically across the center
+    - Add a bottom margin of 35px
+    - Add a padding of 25px to thicken navbar
+    */
+    background-color: #f9a857;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    padding: 25px;
+}
+
+.title a {
+    /*
+    - Change font color to white
+    - Set font size to 35px
+    - Add a left margin of 25px
+    - Get rid of the link underline with text-decoration
+    - Bold the text
+    */
+    color: white;
+    font-size: 35px;
+    margin-left: 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-buttons a {
+    /*
+    - Change font color to white
+    - Set font size to 25px
+    - Add a right margin of 16px
+    - Get rid of the link underline with text-decoration
+    */
+    color: white;
+    font-size: 25px;
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+/* Homepage Styling */
+
+.center {
+    /*
+    - Display as block which takes up entire container space
+    - Set margin-left and margin-right to auto to center
+    */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.welcome {
+    font-size: 25px;
+}
+
+/* HackRacer Game Page Styling */
+
+#sentence {
+    /*
+    - Display as block which takes up entire container space
+    - Centers text
+    - Change font-size to 25px
+    */
+    display: block;
+    text-align: center;
+    font-size: 25px;
+}
+
+.stats_header {
+    /*
+    - Display as block which takes up entire container space
+    - Centers text
+    - Sets margin 30px vertically and 0px horizontally
+    */
+    font-size: 35px;
+    text-align: center;
+    margin: 30px 0px;
+}
+
+.stats {
+    /*
+    - Use flexbox
+    - Align items in the center horizontally
+    - Makes all items into columns
+    - Set font size to 25px
+    */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 25px;
+}
+
+.row {
+    /*
+    - Use flexbox
+    - Makes all items into rows
+    */
+    display: flex;
+    flex-direction: row;
+}
+
+.cell {
+    /*
+    - Set width to 180px
+    - Remove any spacing with 0px margin
+    - Add padding of 10px
+    - Create black solid border around cell
+    - Break words if it goes past the cell width
+    */
+    width: 180px;
+    margin: 0px;
+    padding: 10px;
+    border: 1px solid black;
+    word-wrap: break-word;
+}
+
+.header .cell {
+    background-color: #f9a857;
+}
+
+
+/* Create a Sentence Page Styling */
+
+.create-sentence {
+    /*
+    - Make it a flex container where items are spaced evenly and aligned to the center
+    */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.sentence-form {
+    /*
+    - Make it a flex container where items arranged in a column and aligned to the center
+    */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-row {
+    /*
+    - Add a 16px bottom margin
+    */
+    margin-bottom: 16px;
+}
+
+.form-row p {
+    /*
+    - Change font for textarea
+    - Change font-size to 20px
+    */
+    font-size: 20px;
+}
+
+textarea {
+    /*
+    - Change font for textarea
+    - Change font-size to 25px
+    */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-size: 25px;
+}
+
+#sentence-submission {
+    /*
+    - Change background color to orange
+    - Change font color to orange #f9a857
+    - Increase the font size to 20px
+    - Add padding 10px vertically 24 px horizontally
+    - Add rounded corners with border-radius 4px
+    */
+    background-color: #f9a857;
+    color: white;
+    font-size: 20px;
+    padding: 10px 24px;
+    border-radius: 4px;
+    border-color: #f9a857;
+}
+
+/* Changes style on hover */
+#sentence-submission:hover {
+    /*
+    - Change opacity to 80%
+    - Change mouse cursor to pointer
+    */
+    opacity: 80%;
+    cursor: pointer;
+}
