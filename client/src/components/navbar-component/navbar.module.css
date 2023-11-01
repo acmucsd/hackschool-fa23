@@ -1,0 +1,45 @@
+/* Navbar Styling */
+
+#navbar {
+    /*
+    - Change background color to orange
+    - Turn the navbar into a flex container w/ space between items
+    - Align the items vertically across the center
+    - Add a bottom margin of 35px
+    - Add a padding of 25px to thicken navbar
+    */
+    background-color: #f9a857;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    padding: 25px;
+  }
+  
+.title a {
+    /*
+    - Change font color to white
+    - Set font size to 35px
+    - Add a left margin of 25px
+    - Get rid of the link underline with text-decoration
+    - Bold the text
+    */
+    color: white;
+    font-size: 35px;
+    margin-left: 25px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+.nav_buttons a {
+    /*
+    - Change font color to white
+    - Set font size to 25px
+    - Add a right margin of 16px
+    - Get rid of the link underline with text-decoration
+    */
+    color: white;
+    font-size: 25px;
+    margin-right: 16px;
+    text-decoration: none;
+  }
