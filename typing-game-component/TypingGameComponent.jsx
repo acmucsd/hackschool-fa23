@@ -23,8 +23,8 @@ const sentenceData = [
 ];
 
 const TypingGameComponent = () => {
-  // Create a useState called gameStarted with the function setGameStarted and intialize it to false
-  // Create a useState called selectedSentence with the funciton setSelectedSentence and initialize it to the first sentence in sentenceData
+  //TODO Create a useState called gameStarted with the function setGameStarted and intialize it to false
+  //TODO Create a useState called selectedSentence with the funciton setSelectedSentence and initialize it to the first sentence in sentenceData
 
 
   // useTypingGame to keep track of, and modify chars being typed and other stuff
@@ -44,7 +44,7 @@ const TypingGameComponent = () => {
     if (phase === PhaseType.NotStarted) {
       console.log(phase);
       resetTyping();
-      // Set the gameStarted state to true
+      //TODO Set the gameStarted state to true
     }
   };
 
@@ -54,20 +54,20 @@ const TypingGameComponent = () => {
       { !gameStarted ?  (
         <div className={styles.start_game}>
           <div className={styles.sentence_dropdown}>
-            {/* Create a h3 that says "Select a Sentence" */}
+            {/* TODO Create a h3 that says "Select a Sentence" */}
             
             
-            {/* Crate a select HTML tag with the options as the sentenceData */}
+            {/* TODO Create a select HTML tag with the options as the sentenceData */}
             {/* Iterate through the sentenceData array to dynamically and create an option for each sentence*/}
             {/* Hint use .map */}
             {/* Set the selectedSentence state to be selected sentence from the dropdown using the onChange attribute*/}
 
         </div>
-          {/* Create a button that calls handleGameStart when clicked */}
+          {/* TODO Create a button that calls handleGameStart when clicked */}
         </div>
       ) : (
         <div className={styles.typing_component}>
-          {/* Create a h2 to show the selectedSentence state */}
+          {/* TODO Create a h2 to show the selectedSentence state */}
         </div>
       )}
     </div>
