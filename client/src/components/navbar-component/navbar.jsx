@@ -11,7 +11,7 @@ const NavBar = () => {
             </div>
             <div className={styles.nav_buttons}>
                 <Link href="/gamePage">Play Game</Link>
-                <Link href="/history"> History </Link>
+                <Link href="/gameHistory"> History </Link>
             </div>
         </div>
     )
