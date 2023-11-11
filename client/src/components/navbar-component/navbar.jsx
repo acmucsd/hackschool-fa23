@@ -10,7 +10,7 @@ const NavBar = () => {
                 <Link href="/">HackRacer</Link>
             </div>
             <div className={styles.nav_buttons}>
-                <Link href="/gamePage">Play Game</Link>
+                <Link href="/game">Play Game</Link>
                 <Link href="/history"> History </Link>
             </div>
         </div>
