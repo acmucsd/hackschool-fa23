@@ -19,3 +19,5 @@ Part 3 (10/25) - React & Next.js - [Slide Deck](https://acmurl.com/hackschool-3-
 Part 4 (11/1) - APIs and Express - [Slide Deck](https://acmurl.com/hackschool-4-slides) - [Code](https://github.com/acmucsd/hackschool-fa23/tree/part4) - [Recording](https://acmurl.com/hackschool-4-video)
 
 Part 5 (11/8) - Databases - [Slide Deck](https://acmurl.com/hackschool-5-slides) - [Code](https://github.com/acmucsd/hackschool-fa23/tree/part5) - [Recording](https://acmurl.com/hackschool-5-video)
+
+Part 6 (11/15) - More React & Finishing Our Project - [Slide Deck](https://acmurl.com/hackschool-6-slides) - [Code](https://github.com/acmucsd/hackschool-fa23/tree/part6) - [Recording](https://acmurl.com/hackschool-6-video)
