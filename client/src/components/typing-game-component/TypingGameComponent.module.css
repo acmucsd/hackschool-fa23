@@ -1,18 +1,16 @@
 .typing_game {
-    /* 
-    Center content both vertically and horizontally using flex
-    Make the container full width
-    Stack content vertically
-    Center text horizontally 
-    */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    text-align: center;
 }
 .start_game {
-    /* 
-    Create a flex container to stack content vertically
-    Add a gap of 40px between items
-    */
-}
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 
+}
 .sentence_label {
     font-size: 1.5rem;
 }
@@ -22,13 +20,12 @@
 }
 
 .start_button {
-    /*
-    Set background and border color to orange
-    Text to white
-    Set the radius of the border to 4px to have rounded edges
-    Add some padding to make the button taller
-    Set the font size so we can read the text
-    */
+    background-color: #f9a857;
+    color: white;
+    padding: 10px 24px;
+    font-size: 20px;
+    border-radius: 4px;
+    border-color: #f9a857;
 }
 
 .start_button:hover {
@@ -36,9 +33,10 @@
     - Change opacity to 80%
     - Change mouse cursor to pointer
     */
+    opacity: 80%;
+    cursor: pointer;
 }
 
-/* For styling the actual typing game component */
 .typing_component {
     padding: 1rem;
     margin-bottom: 2rem;

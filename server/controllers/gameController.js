@@ -12,9 +12,6 @@ const getGame = async (req, res) => {
 // Creates a new game in the database
 const postGame = async (req, res) => {
 
-    const { game } = req.body;
-    const { sentence, correctCharacters, incorrectCharacters, wpm, time } = game;
-
     // Creates a new game in the database
     const newGame = await GameStats.create(req.body);
 

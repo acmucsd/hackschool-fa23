@@ -1,9 +1,13 @@
-import React, {useState } from "react";
-import useTypingGame, {PhaseType} from "react-typing-game-hook"; // for playing the game
-// Make sure to run `npm install react-typing-game-hook` to install the typing game hook
+/**
+ * useEffect : (i) lets you synchronize a component with an external system
+ *             (ii) we will be using it to check game completion conditions
+ */
+import React, { useEffect, useState } from "react";
+import useTypingGame, { PhaseType } from "react-typing-game-hook"; // for playing the game
+import CardComponent from "../game-history-component/CardComponent";
 import styles from "./TypingGameComponent.module.css";
+import axios from "axios";
 
-//Currently using a hard coded sentence bank
 const sentenceData = [
   "The sun rose over the horizon, casting a warm golden glow.",
   "She sipped her coffee and watched the raindrops dance on the windowpane.",
@@ -23,19 +27,31 @@ const sentenceData = [
 ];
 
 const TypingGameComponent = () => {
-  //TODO Create a useState called gameStarted with the function setGameStarted and intialize it to false
-  //TODO Create a useState called selectedSentence with the funciton setSelectedSentence and initialize it to the first sentence in sentenceData
-
+  const [gameStarted, setGameStarted] = useState(false); // checks if the game has begun
+  const [statsObject, setStatsObject] = useState(null); // ensures object is not undefined
+  const [selectedSentence, setSelectedSentence] = useState(sentenceData[0]); // sentence for typing game
 
   // useTypingGame to keep track of, and modify chars being typed and other stuff
   const {
-    states: { chars, charsState, phase, correctChar, errorChar},
+    states: { chars, charsState, phase, correctChar, errorChar },
     actions: { insertTyping, resetTyping, deleteTyping, getDuration },
   } = useTypingGame(selectedSentence, {
     skipCurrentWordOnSpace: true,
     pauseOnError: false,
     countErrors: "everytime",
   });
+
+  // Axios for communicating with the backend (i.e. sending game stats)
+  // Endpoint: 'http://localhost:5000/home/game'
+  const sendGameStats = async (stats) => {
+    try {
+      // Make a POST request to create/update the game stats document
+      const response = await axios.post("http://localhost:4000/api/game", stats);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Failed to create/update game stats:", error);
+    }
+  };
 
   // triggered when start button is clicked
   // updates setGameStart
@@ -44,31 +60,104 @@ const TypingGameComponent = () => {
     if (phase === PhaseType.NotStarted) {
       console.log(phase);
       resetTyping();
-      //TODO Set the gameStarted state to true
+      setGameStarted(true); // game started == true 
     }
   };
+
+
+  const calculateWPM = () => {
+    let numWords = selectedSentence.split(" ").length;
+    let time = getDuration() / 1000 / 60;
+    console.log("number of words: " + numWords);
+    console.log("duration in mins: " + time)
+    return numWords / time; 
+  };
+
+  // if the game has ended, we send the game stats to the DB 
+  const handleGameEnd = () => {
+      let stats = { 
+        sentence: chars, 
+        correctCharacters: correctChar, // number of correct words 
+        incorrectCharacters: errorChar,
+        wpm: calculateWPM().toFixed(2),
+        time: (getDuration()/ 1000/60).toFixed(2), // miliseconds --> mins 
+      }
+      setStatsObject(stats); // this will be used to print the object on the screen
+      sendGameStats(stats);
+  };
+
+  /**
+   * Checking for game completion conditions:
+   * Complete if:
+   *        - Currently, gameStarted  === true
+   *        - on the n+1th character
+   */
+  useEffect(() => {
+    if (phase === PhaseType.Started && charsState.length === chars.length + 1) {
+      handleGameEnd();
+    }
+  }, [phase, charsState.length]);
 
   // here, we render the game
   return (
     <div className={styles.typing_game}>
-      { !gameStarted ?  (
+      {!gameStarted ? (
         <div className={styles.start_game}>
           <div className={styles.sentence_dropdown}>
-            {/* TODO Create a h3 that says "Select a Sentence" */}
-            
-            
-            {/* TODO Create a select HTML tag with the options as the sentenceData */}
-            {/* Iterate through the sentenceData array to dynamically and create an option for each sentence*/}
-            {/* Hint use .map */}
-            {/* Set the selectedSentence state to be selected sentence from the dropdown using the onChange attribute*/}
-
-        </div>
-          {/* TODO Create a button that calls handleGameStart when clicked */}
+            <h3 className={styles.sentence_label}>Select a sentence</h3>
+            <select
+              name="sentence-select"
+              id={styles.sentence_selector}
+              onChange={(e) => setSelectedSentence(e.target.value)}
+            >
+              {sentenceData.map((sentence, index) => (
+                <option key={index}>{sentence}</option>
+              ))}
+            </select>
+          </div>
+          <button className={styles.start_button} onClick={handleGameStart}>
+            Start
+          </button>
         </div>
       ) : (
         <div className={styles.typing_component}>
-          {/* TODO Create a h2 to show the selectedSentence state */}
+          <p>Click on the sentence below and start typing!</p>
+        <h2 
+          onKeyDown={(e) => {
+            // call different functions based on the key clicked
+            const key = e.key;
+            if (key === "Escape") {
+              // we can potentially change it from escape char to a button lmk tho
+              resetTyping();
+            } else if (key === "Backspace") {
+              deleteTyping(false);
+            } else if (key.length === 1) {
+              insertTyping(key);
+            }
+            // preventDefault makes sure that the keys dont do what they normally do, and instead
+            // execute the functions that we have specified above
+            e.preventDefault();
+          }}
+          tabIndex={0}
+          onBlur={handleGameEnd} // when the user clicks away from the component (which is in <h1> rn)
+        >
+          {chars.split("").map((char, index) => {
+            let state = charsState[index]; // check state at curr pos
+            // if not done -> black
+            // if correct -> green
+            // else red
+            let color = state === 0 ? "#292F36" : state === 1 ? "#417B5A" : "#FF6B6B";
+            return (
+              <span key={char + index} style={{ color }}>
+                {char}
+              </span>
+            );
+          })}
+        </h2>
         </div>
+      )}
+      {statsObject && ( // Check if statsObject is not null before displaying it
+        <CardComponent {...statsObject}/>
       )}
     </div>
   );

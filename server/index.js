@@ -1,7 +1,8 @@
 const express = require ('express');
 const cors = require('cors');
 const config = require('./config');
-const router = require('./routes/gameRoutes')
+const router = require('./routes/gameRoutes');
+const mongoose = require('mongoose');
 
 
 // Create an Express server
